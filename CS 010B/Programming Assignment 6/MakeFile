@@ -1,0 +1,20 @@
+#SortedSet makefile
+
+#Variables
+COMPILE = g++
+FLAGS = #-W # -Werror
+OBJS = IntList.o SortedSet.o
+
+#Targets
+
+all: main.cpp $(OBJS)
+	$(COMPILE) $(FLAGS) -o a.out main.cpp $(OBJS)
+
+IntList.o: IntList.cpp IntList.h
+	$(COMPILE) $(FLAGS) -c IntList.cpp
+
+SortedSet.o: SortedSet.cpp SortedSet.h
+	$(COMPILE) $(FLAGS) -c SortedSet.cpp
+
+clean:
+	rm -rf *.o a.out
