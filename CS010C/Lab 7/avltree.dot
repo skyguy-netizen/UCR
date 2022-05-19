@@ -1,5 +1,6 @@
 digraph G {
 Bui -> Adam;
-Chan -> Edie;
-Bui -> Chan;
+Dan -> Chan;
+Dan -> Edie;
+Bui -> Dan;
 }
