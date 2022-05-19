@@ -45,6 +45,7 @@ int main()
     else if (choice == 2)
     {
       tree.printBalanceFactors();
+      cout << endl;
     }
     // fix buffer just in case non-numeric choice entered
     choice = menu();
