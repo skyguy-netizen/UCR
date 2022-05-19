@@ -10,39 +10,58 @@ void AVLTree::insert(const string &val)
     if (empty())
     {
         root = new Node(val);
-    }
-
-    Node *curr = root;
-    while (curr != nullptr && curr->getData() != val)
-    {
-        if (curr->getData() < val)
-        {
-            curr = curr->getLeft();
-        }
-        else
-        {
-            curr = curr->getRight();
-        }
-    }
-    if (curr->getLeft() != nullptr)
-    {
-        curr->setLeft(new Node(val));
-        curr->getLeft()->setParent(curr);
-        curr = curr->getLeft();
-    }
-    else if (curr->getRight() != nullptr)
-    {
-        curr->setRight(new Node(val));
-        curr->getRight()->setParent(curr);
-        curr = curr->getRight();
-    }
-    else
-    {
         return;
     }
 
+    Node *curr = root;
+    // while (curr != nullptr && curr->getData() != val)
+    // {
+    //     cout << "Inside while" << endl;
+    //     if (curr->getData() < val)
+    //     {
+    //         curr = curr->getLeft();
+    //     }
+    //     else
+    //     {
+    //         curr = curr->getRight();
+    //     }
+    // }
+    // cout << "Outside while" << endl;
+    // curr = new Node(val);
     while (curr != nullptr)
     {
+        if (val < curr->getData())
+        {
+            if (curr->getLeft() == nullptr)
+            {
+                curr->setLeft(new Node(val));
+                curr->getLeft()->setParent(curr);
+                curr = nullptr;
+            }
+            else
+            {
+                curr = curr->getLeft();
+            }
+        }
+        else
+        {
+            if (curr->getRight() == nullptr)
+            {
+                curr->setRight(new Node(val));
+                curr->getRight()->setParent(curr);
+                curr = nullptr;
+            }
+            else
+            {
+                curr = curr->getRight();
+            }
+        }
+    }
+
+    // cout << "Entering second while" << endl;
+    while (curr != nullptr)
+    {
+        // cout << "Test" << endl;
         balanceTree(curr);
         curr = curr->getParent();
     }

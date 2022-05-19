@@ -3,14 +3,16 @@
 
 using namespace std;
 
-int menu() {
+int menu()
+{
   int choice = 0;
-  cout << endl << "Enter menu choice: ";
+  cout << endl
+       << "Enter menu choice: ";
   cout << endl;
-  cout 
-    << "1. Insert" << endl
-    << "2. Print" << endl
-    << "3. Quit" << endl;
+  cout
+      << "1. Insert" << endl
+      << "2. Print" << endl
+      << "3. Quit" << endl;
   cin >> choice;
 
   // fix buffer just in case non-numeric choice entered
@@ -20,7 +22,8 @@ int menu() {
   return choice;
 }
 
-int main() {
+int main()
+{
 
   AVLTree tree;
 
@@ -28,22 +31,26 @@ int main() {
 
   string entry;
 
-  while (choice != 3) {
+  while (choice != 3)
+  {
 
-    if (choice == 1) {
+    if (choice == 1)
+    {
       cout << "Enter string to insert: ";
       getline(cin, entry);
       cout << endl;
 
       tree.insert(entry);
-
-    } else if (choice == 2) {
+    }
+    else if (choice == 2)
+    {
       tree.printBalanceFactors();
-
-    } 
-    //fix buffer just in case non-numeric choice entered
+    }
+    // fix buffer just in case non-numeric choice entered
     choice = menu();
   }
+  string filename = "avltree.dot";
+  tree.visualizeTree(filename);
 
   return 0;
 }
