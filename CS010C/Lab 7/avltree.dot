@@ -1,6 +1,9 @@
 digraph G {
-Bui -> Adam;
-Dan -> Chan;
-Dan -> Edie;
-Bui -> Dan;
+bravo -> alpha;
+hotel -> charlie;
+bravo -> hotel;
+india -> bravo;
+papa -> juliet;
+papa -> quebec;
+india -> papa;
 }
