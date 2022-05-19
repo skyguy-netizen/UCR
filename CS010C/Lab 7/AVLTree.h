@@ -26,7 +26,7 @@ private:
     void rotateRight(Node *node);
     void rotateLeft(Node *node);
     void printBalanceFactors(Node *root);
-    void updateHeight(Node *node);
+    int updateHeight(Node *node);
 };
 
 #endif
