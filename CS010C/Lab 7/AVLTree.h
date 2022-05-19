@@ -25,6 +25,8 @@ private:
     void balanceTree(Node *root);
     void rotateRight(Node *node);
     void rotateLeft(Node *node);
+    void printBalanceFactors(Node *root);
+    void updateHeight(Node *node);
 };
 
 #endif

@@ -19,7 +19,7 @@ void AVLTree::insert(const string &val)
         {
             curr = curr->getLeft();
         }
-        else if
+        else
         {
             curr = curr->getRight();
         }
@@ -28,29 +28,50 @@ void AVLTree::insert(const string &val)
     {
         curr->setLeft(new Node(val));
         curr->getLeft()->setParent(curr);
+        curr = curr->getLeft();
     }
     else if (curr->getRight() != nullptr)
     {
         curr->setRight(new Node(val));
         curr->getRight()->setParent(curr);
+        curr = curr->getRight();
     }
     else
     {
         return;
     }
+
+    while (curr != nullptr)
+    {
+        balanceTree(curr);
+        curr = curr->getParent();
+    }
 }
 void AVLTree::printBalanceFactors()
 {
+    printBalanceFactors(root);
 }
+
+void AVLTree::printBalanceFactors(Node *root)
+{
+    if (root == nullptr)
+    {
+        return;
+    }
+    printBalanceFactors(root->getLeft());
+    cout << BalanceFactor(root) << " ";
+    printBalanceFactors(root->getRight());
+}
+
 int AVLTree::BalanceFactor(Node *node)
 {
 
-    leftHeight = -1;
+    int leftHeight = -1;
     if (node->getLeft() != NULL)
     {
         leftHeight = node->getLeft()->getHeight();
     }
-    rightHeight = -1;
+    int rightHeight = -1;
     if (node->getRight() != NULL)
     {
         rightHeight = node->getRight()->getHeight();
@@ -101,17 +122,34 @@ bool AVLTree::empty()
 
 void AVLTree::balanceTree(Node *root)
 {
+    updateHeight(root);
+    if (BalanceFactor(root) == -2)
+    {
+        if (BalanceFactor(root->getRight()) == 1)
+        {
+            rotateRight(root->getRight());
+        }
+        rotateLeft(root);
+    }
+    else if (BalanceFactor(root) == 2)
+    {
+        if (BalanceFactor(root->getLeft()) == -1)
+        {
+            rotateLeft(root->getLeft());
+        }
+        rotateRight(root);
+    }
 }
 
 void AVLTree::updateHeight(Node *root)
 {
     int leftHeight = -1;
-    if (root->getLeft() != null)
+    if (root->getLeft() != nullptr)
     {
         leftHeight = root->getLeft()->getHeight();
     }
-    rightHeight = -1;
-    if (root->getRight() != null)
+    int rightHeight = -1;
+    if (root->getRight() != nullptr)
     {
         rightHeight = root->getRight()->getHeight();
     }
@@ -120,7 +158,7 @@ void AVLTree::updateHeight(Node *root)
 
 void AVLTree::rotateLeft(Node *root)
 {
-    if (root->getParent() != null)
+    if (root->getParent() != nullptr)
     {
         Node *temp = root->getParent();
         temp->setRight(root->getRight());
@@ -134,7 +172,7 @@ void AVLTree::rotateLeft(Node *root)
         Node *newRight = temp->getRight()->getLeft();
         this->root = temp;
         this->root->setLeft(temp);
-        temp->setRight(newLeft);
+        temp->setRight(newRight);
     }
 }
 

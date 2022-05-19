@@ -21,13 +21,13 @@ public:
     Node *getLeft() { return left; }
     Node *getRight() { return right; }
     Node *getParent() { return parent; }
-    Node *getHeight() { return height; }
+    int getHeight() { return height; }
     string getData() { return data; }
-    void setParent(Node *parent) { this->parent = parent; };
-    int getHeight()
-    {
-        return height;
-    }
+    void setParent(Node *parent) { this->parent = parent; }
+    void setLeft(Node *left) { this->left = left; }
+    void setRight(Node *right) { this->right = right; }
+    void setData(string data) { this->data = data; }
+    void setHeight(int height) { this->height = height; }
 };
 
 #endif
