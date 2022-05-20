@@ -274,10 +274,10 @@ int heightOfTree(TreeNode *root){
     return 1 + max(heightOfTree(root->left),heightOfTree(root->right));
 }
 
-// char c = '['-6;
+char c = '['-6;
 
 
-void enumarateCurrentLevel(TreeNode* root, int level, char c)
+void enumarateCurrentLevel(TreeNode* root, int level)
 {
     if (root == NULL)
         return;
@@ -287,21 +287,19 @@ void enumarateCurrentLevel(TreeNode* root, int level, char c)
     }
 
     else if (level > 1) {
-        c++;
-        enumarateCurrentLevel(root->left, level - 1, c);
-        c++;
-        enumarateCurrentLevel(root->right, level - 1, c);
+        enumarateCurrentLevel(root->left, level - 1);
+        enumarateCurrentLevel(root->right, level - 1);
     }
 }
 
 void enumarateLevelOrder(TreeNode* root)
 {
     int h = heightOfTree(root);
-    char c = 'a' - 2*(h+2);
+    // char c = 'a' - 2*(h+2);
     cout << "C: " << c << endl;
     int i;
     for (i = 1; i <= h+1; i++)
-        enumarateCurrentLevel(root, i, c);
+        enumarateCurrentLevel(root, i);
 }
 
 void enumarateTree(TreeNode *root)
