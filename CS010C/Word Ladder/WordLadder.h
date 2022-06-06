@@ -2,6 +2,7 @@
 #define WORDLADDER_H
 #include <list>
 #include <string>
+#include <stack>
 
 class WordLadder {
     private:
@@ -30,23 +31,13 @@ class WordLadder {
         // int hash(char a){
         //     return a % 26;
         // }
-        bool isValidInput(const std::string &word, const std::string &word2){
-            bool word1Present = false;
-            bool word2Present = false;
+        bool isValidInput(const std::string &word){
             for (auto i = dict.begin(); i != dict.end(); i++) {
                 if (*i == word) {
-                    word1Present = true;
-                    break;
+                    return true;
                 }
             }
-
-            for (auto i = dict.begin(); i != dict.end(); i++) {
-                if (*i == word2){
-                    word2Present = true;
-                    break;
-                }
-            }
-            return (word1Present && word2Present) ? true: false;
+            return false;
         }
 };
 
